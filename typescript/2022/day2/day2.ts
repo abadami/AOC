@@ -5,6 +5,12 @@ const WIN_SCORE = 6;
 const DRAW_SCORE = 3;
 const LOSE_SCORE = 0;
 
+enum OpponentChoices {
+  A,
+  B,
+  C,
+}
+
 const handleRockScenario = (choice: string) => {
   let scoreForRound = 0;
 
@@ -56,6 +62,24 @@ const handleScissorsScenario = (choice: string) => {
   return scoreForRound;
 };
 
+const initializePossibleScores = () => {
+  const possibilities: Array<Array<number>> = [[], [], []];
+
+  const possibleAnswers = ["Y", "X", "Z"];
+
+  possibleAnswers.forEach((answer) => {
+    possibilities[0].push(handleRockScenario(answer));
+    possibilities[1].push(handlePaperScenario(answer));
+    possibilities[2].push(handleScissorsScenario(answer));
+  });
+
+  possibilities[0] = possibilities[0].sort();
+  possibilities[1] = possibilities[1].sort();
+  possibilities[2] = possibilities[2].sort();
+
+  return possibilities;
+};
+
 export const part1 = (input: string) => {
   const scenarios = input.split("\r\n");
 
@@ -77,5 +101,26 @@ export const part1 = (input: string) => {
 };
 
 export const part2 = (input: string) => {
-  return 0;
+  const scenarios = input.split("\r\n");
+
+  const scenarioResults = initializePossibleScores();
+
+  let totalScore = 0;
+
+  scenarios.forEach((scenario) => {
+    const choices = scenario.split(" ");
+
+    if (choices[1] === "X") {
+      totalScore +=
+        scenarioResults[OpponentChoices[choices[0] as "A" | "B" | "C"]][0];
+    } else if (choices[1] === "Y") {
+      totalScore +=
+        scenarioResults[OpponentChoices[choices[0] as "A" | "B" | "C"]][1];
+    } else if (choices[1] === "Z") {
+      totalScore +=
+        scenarioResults[OpponentChoices[choices[0] as "A" | "B" | "C"]][2];
+    }
+  });
+
+  return totalScore;
 };
