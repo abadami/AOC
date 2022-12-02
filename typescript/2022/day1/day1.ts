@@ -9,8 +9,6 @@ export const part1 = (input: string) => {
     const currentValue = splitValues[i];
 
     if (currentValue === "") {
-      console.log(`Elf's Total: ${trackTotal}`);
-
       if (trackTotal > highest) {
         highest = trackTotal;
       }
