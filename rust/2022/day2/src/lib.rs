@@ -55,15 +55,12 @@ pub fn part1(input: &String) -> i64 {
   for scenario in scenarios {
     let choices: Vec<&str> = scenario.split(" ").collect();
 
-    println!("Current Opponent: {}", choices[0]);
-    println!("Current Choice: {}", choices[1]);
-
     if choices[0] == "A" {
-      total_score = total_score + handle_rock_scenario(choices[1]);
+      total_score += handle_rock_scenario(choices[1]);
     } else if choices[0] == "B" {
-      total_score = total_score + handle_paper_scenario(choices[1]);
+      total_score += handle_paper_scenario(choices[1]);
     } else if choices[0] == "C" {
-      total_score = total_score + handle_scissors_scenario(choices[1]);
+      total_score += handle_scissors_scenario(choices[1]);
     }
   }
 
