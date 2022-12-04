@@ -1,7 +1,7 @@
 export const part1 = (input: string) => {
   let highest = 0;
 
-  const splitValues = input.split("\n");
+  const splitValues = input.split("\r\n");
 
   let trackTotal = 0;
 
@@ -27,7 +27,7 @@ export const part1 = (input: string) => {
 export const part2 = (input: string) => {
   const totals = [];
 
-  const splitValues = input.split("\n");
+  const splitValues = input.split("\r\n");
 
   let trackTotal = 0;
 
