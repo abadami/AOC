@@ -13,7 +13,7 @@ fn parse_input(input: &String) -> (Vec<Vec<char>>, Vec<[usize; 3]>) {
       while i < line.len() {
         let character = line.chars().nth(i).unwrap();
 
-        if (character.is_alphabetic()) {
+        if character.is_alphabetic() {
           crates[(i - 1) / 4].insert(0, character);
         }
 
@@ -39,9 +39,7 @@ pub fn part1(input: &String) -> String {
     let from = instruction[1] - 1;
     let to = instruction[2] - 1;
 
-    println!("Move {} from {} to {}", quantity, from, to);
-
-    for i in 0..quantity {
+    for _i in 0..quantity {
       let character = crates[from].pop().unwrap();
       crates[to].push(character);
     }
@@ -68,7 +66,7 @@ pub fn part2(input: &String) -> String {
 
     let mut crates_to_move: Vec<char> = Vec::new();
 
-    for i in 0..quantity {
+    for _i in 0..quantity {
       let character = crates[from].pop().unwrap();
       crates_to_move.insert(0, character);
     }
