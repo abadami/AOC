@@ -11,7 +11,6 @@ fn look_for_distinct_characters_index(characters: Vec<char>, number: usize) -> u
     }
 
     if character_set.len() == number {
-      // answer is index right before
       return index + number;
     }
 
