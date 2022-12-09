@@ -1,3 +1,5 @@
+// This is how I did it and I'm sticking with it no matter how ugly it is
+
 fn parse_input(input: Vec<&str>) -> Vec<Vec<u32>> {
   let mut forest: Vec<Vec<u32>> = vec![];
   
