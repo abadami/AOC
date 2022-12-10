@@ -62,7 +62,7 @@ class RopeMap {
 export const part1 = (input: string) => {
   const instructions = input.split("\r\n");
 
-  const map = new RopeMap(10);
+  const map = new RopeMap(1);
 
   instructions.forEach((instruction, index) => {
     const instructionSplit = instruction.split(" ");
