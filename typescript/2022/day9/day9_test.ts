@@ -215,7 +215,7 @@ D 1
 L 5
 R 2`;
 
-  let count = part1(example);
+  const count = part1(example);
 
   assertEquals(count, 13);
 });
@@ -246,7 +246,7 @@ R 1
 D 1
 R 3`;
 
-  let count = part1(example);
+  const count = part1(example);
 
   assertEquals(count, 30);
 });
@@ -264,7 +264,7 @@ L 1
 D 1
 `;
 
-  let count = part1(example);
+  const count = part1(example);
 
   assertEquals(count, 1);
 });
@@ -279,7 +279,7 @@ D 10
 L 25
 U 20`;
 
-  let count = part2(example);
+  const count = part2(example);
 
   assertEquals(count, 36);
 });
