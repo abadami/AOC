@@ -1,3 +1,7 @@
+// Not a perfect solution, I think the last pixel for the CRT has a chance to be wrong
+// not sure what causes it yet, but the answer is visible so no problemo I guess
+// Maybe I'll fix it someday
+
 export class CPU {
   X = 1;
   cycle = 1;
@@ -42,25 +46,16 @@ export class CPU {
   getCRTScreen() {
     const CRTSetup: string[][] = [[], [], [], [], [], []];
 
-    for (let i = 1; i <= 240; i++) {
-      if (i < 23) {
-        console.log(`At ${i}, with X value ${this.ticks[i]}`);
-      }
-
+    for (let i = 0; i < 240; i++) {
       const index = Math.floor(i / 40);
-      const spritePosition = i % 40;
+      const cycle = i + 1;
+      const spritePosition = cycle % 40;
       if (
-        spritePosition >= this.ticks[i] - 1 &&
-        spritePosition <= this.ticks[i] + 1
+        spritePosition >= this.ticks[cycle] &&
+        spritePosition <= this.ticks[cycle] + 2
       ) {
-        if (i < 23) {
-          console.log("Drew #");
-        }
         CRTSetup[index].push("#");
       } else {
-        if (i < 23) {
-          console.log("Drew .");
-        }
         CRTSetup[index].push(".");
       }
     }

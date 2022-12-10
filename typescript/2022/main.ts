@@ -37,7 +37,7 @@ console.log(`Part 1: ${day9Part1(day9Input)}`);
 console.log(`Part 2: ${day9Part2(day9Input)}`);
 
 console.log(`--2022 day 10 solution--`);
-const day10Input = Deno.readTextFileSync("./day10/tests/input_example.txt");
+const day10Input = Deno.readTextFileSync("./day10/input.txt");
 console.log(`Part 1: ${day10Part1(day10Input)}`);
 console.log(`Part 2:`);
 
