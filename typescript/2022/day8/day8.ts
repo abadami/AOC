@@ -38,7 +38,18 @@ class RopeMap {
   }
 
   moveTail() {
-    this.tail = this.moves[this.moves.length - 1 - this.ropeLength];
+    if (this.head[0] === this.tail[0]) {
+      this.tail[1] =
+        this.head[1] > this.tail[1] ? this.tail[1] + 1 : this.tail[1] - 1;
+    } else if (this.head[1] === this.tail[1]) {
+      this.tail[0] =
+        this.head[0] > this.tail[0] ? this.tail[0] + 1 : this.tail[0] - 1;
+    } else {
+      this.tail[0] =
+        this.head[0] > this.tail[0] ? this.tail[0] + 1 : this.tail[0] - 1;
+      this.tail[1] =
+        this.head[1] > this.tail[1] ? this.tail[1] + 1 : this.tail[1] - 1;
+    }
 
     this.tailPositions.add(`${this.tail[0]}${this.tail[1]}`);
   }
@@ -51,8 +62,7 @@ class RopeMap {
 export const part1 = (input: string) => {
   const instructions = input.split("\r\n");
 
-  const map = new RopeMap(1);
-  let moveCount = 0;
+  const map = new RopeMap(10);
 
   instructions.forEach((instruction, index) => {
     const instructionSplit = instruction.split(" ");
@@ -60,16 +70,13 @@ export const part1 = (input: string) => {
     const direction: Direction = instructionSplit[0] as Direction;
     const number = parseInt(instructionSplit[1]);
 
-    console.log(index);
-
-    moveCount = moveCount + number;
-
     for (let i = 0; i < number; i++) {
       map.moveHead(direction);
     }
   });
 
-  console.log(moveCount);
+  console.log(map.tailPositions);
+  console.log(map.moves.length);
 
   return map.getTailPositionsCount();
 };
