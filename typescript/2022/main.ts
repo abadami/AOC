@@ -9,6 +9,7 @@ import { part1 as day8Part1, part2 as day8Part2 } from "./day8/day8.ts";
 import { part1 as day9Part1, part2 as day9Part2 } from "./day9/day9.ts";
 import { part1 as day10Part1, part2 as day10Part2 } from "./day10/day10.ts";
 import { part1 as day11Part1, part2 as day11Part2 } from "./day11/day11.ts";
+import { part1 as day12Part1, part2 as day12Part2 } from "./day12/day12.ts";
 
 console.log(`--2022 day 01 solution--`);
 const day1Input = Deno.readTextFileSync("./day1/input.txt");
@@ -62,7 +63,12 @@ console.log(`Part 2:`);
 
 day10Part2(day10Input).forEach((line) => console.log(line));
 
-console.log(`--2022 day 10 solution--`);
+console.log(`--2022 day 11 solution--`);
 const day11Input = Deno.readTextFileSync("./day11/input.txt");
 console.log(`Part1: ${day11Part1(day11Input)}`);
 console.log(`Part 2: ${day11Part2(day11Input)}`);
+
+console.log(`--2022 day 12 solution--`);
+const day12Input = Deno.readTextFileSync("./day12/input.txt");
+console.log(`Part 1: ${day12Part1(day12Input)}`);
+console.log(`Part 2: ${day12Part2(day12Input)}`);
