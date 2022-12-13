@@ -10,6 +10,18 @@ export const findNextValue = (value: string) => {
   return String.fromCharCode(value.charCodeAt(0) + 1);
 };
 
+export const checkValidTravel = (valueA: string, valueB: string) => {
+  if (valueA === "z" && valueB === "E") return true;
+
+  if (valueA === "S" && valueB === "a") return true;
+
+  if (valueA === "S" && valueB !== "a") return false;
+
+  if (valueB === "E" && valueA !== "z") return false;
+
+  return valueA.charCodeAt(0) + 1 >= valueB.charCodeAt(0);
+};
+
 export const createGraphFromMatrix = (matrix: string[][]) => {
   const nodes: GraphNode[] = [];
 
@@ -21,36 +33,30 @@ export const createGraphFromMatrix = (matrix: string[][]) => {
         edges: [],
       };
 
-      const nextValue = findNextValue(value);
-
       if (
         rowIndex !== 0 &&
-        matrix[rowIndex - 1][columnIndex].charCodeAt(0) <=
-          nextValue.charCodeAt(0)
+        checkValidTravel(node.label, matrix[rowIndex - 1][columnIndex])
       ) {
         node.edges.push([rowIndex - 1, columnIndex]);
       }
 
       if (
         rowIndex !== matrix.length - 1 &&
-        matrix[rowIndex + 1][columnIndex].charCodeAt(0) ===
-          nextValue.charCodeAt(0)
+        checkValidTravel(node.label, matrix[rowIndex + 1][columnIndex])
       ) {
         node.edges.push([rowIndex + 1, columnIndex]);
       }
 
       if (
         columnIndex !== 0 &&
-        matrix[rowIndex][columnIndex - 1].charCodeAt(0) <=
-          nextValue.charCodeAt(0)
+        checkValidTravel(node.label, matrix[rowIndex][columnIndex - 1])
       ) {
         node.edges.push([rowIndex, columnIndex - 1]);
       }
 
       if (
         columnIndex !== row.length - 1 &&
-        matrix[rowIndex][columnIndex + 1].charCodeAt(0) <=
-          nextValue.charCodeAt(0)
+        checkValidTravel(node.label, matrix[rowIndex][columnIndex + 1])
       ) {
         node.edges.push([rowIndex, columnIndex + 1]);
       }

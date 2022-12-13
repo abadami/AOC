@@ -10,10 +10,9 @@ export class Graph {
     this.columnLength = matrix.length;
     this.rowLength = matrix[0].length;
     this.nodes = createGraphFromMatrix(matrix);
-    console.log(this.nodes);
   }
 
-  breadthFirstSearch() {
+  breadthFirstSearch(startingNode: GraphNode) {
     const visited: Edge[] = [];
 
     const queue: GraphNode[] = [];
@@ -32,10 +31,6 @@ export class Graph {
         distance[i][j] = Number.MAX_SAFE_INTEGER;
       }
     }
-
-    const startingNode = this.nodes.find(
-      (node) => node.label === "S"
-    ) as GraphNode;
 
     distance[startingNode.position[0]][startingNode.position[1]] = 0;
 
@@ -63,8 +58,7 @@ export class Graph {
 
           if (newDistance < distance[edge[0]][edge[1]]) {
             previous[edge[0]][edge[1]] = currentNode.position;
-            distance[edge[0]][edge[1]] =
-              distance[currentNode.position[0]][currentNode.position[1]] + 1;
+            distance[edge[0]][edge[1]] = newDistance;
           }
 
           if (currentNode.label === "E") {
