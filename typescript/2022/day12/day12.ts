@@ -14,6 +14,8 @@ export const part1 = (input: string) => {
   return distanceMatrix[endNode.position[0]][endNode.position[1]];
 };
 
+//This one takes a while, a lot of algorithms being ran. Maybe see if I can run it concurrently
+
 export const part2 = (input: string) => {
   const matrix = input.split(/\r?\n/).map((line) => line.split(""));
 
