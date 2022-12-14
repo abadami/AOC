@@ -14,8 +14,6 @@ export const part1 = (input: string) => {
     tests.push(compareArraysRecursion(valueA, valueB) as number);
   }
 
-  console.log(tests);
-
   return calculateIndices(tests);
 };
 
