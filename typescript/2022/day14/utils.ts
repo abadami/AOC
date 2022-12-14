@@ -26,3 +26,36 @@ export const lowestXAndY = (points: number[][][]) =>
     },
     [Number.MAX_SAFE_INTEGER, Number.MAX_SAFE_INTEGER]
   );
+
+export const lowerByOffset = (points: number[][][], offsetX: number) =>
+  points.map((rockLine) =>
+    rockLine.map((point) => [point[0] - offsetX, point[1]])
+  );
+
+export const findAllRockPoints = (points: number[][][]) => {
+  const allRockPoints: number[][][] = [];
+};
+
+export const pointsBetweenTwo = (pointA: number[], pointB: number[]) => {
+  const points = [];
+
+  if (pointA[0] === pointB[0] && pointA[1] < pointB[1]) {
+    for (let i = pointA[1]; i <= pointB[1]; i++) {
+      points.push([pointA[0], i]);
+    }
+  } else if (pointA[0] === pointB[0] && pointA[1] > pointB[1]) {
+    for (let i = pointA[1]; i >= pointB[1]; i--) {
+      points.push([pointA[0], i]);
+    }
+  } else if (pointA[1] === pointB[1] && pointA[0] < pointB[0]) {
+    for (let i = pointA[0]; i <= pointB[0]; i++) {
+      points.push([i, pointA[0]]);
+    }
+  } else if (pointA[1] === pointB[1] && pointA[0] > pointB[0]) {
+    for (let i = pointA[0]; i >= pointB[0]; i--) {
+      points.push([i, pointA[0]]);
+    }
+  }
+
+  return points;
+};

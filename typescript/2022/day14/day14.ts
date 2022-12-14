@@ -1,12 +1,16 @@
-import { lowestXAndY, parseInput } from "./utils.ts";
+import { SandCave } from "./SandCave.ts";
+import { lowerByOffset, lowestXAndY, parseInput } from "./utils.ts";
 
 export const part1 = (input: string) => {
   const rockPoints = parseInput(input);
 
-  const [lowX, lowY] = lowestXAndY(rockPoints);
+  const [offsetX, offsetY] = lowestXAndY(rockPoints);
 
-  console.log(`Lowest X point: ${lowX}`);
-  console.log(`Lowest Y point: ${lowY}`);
+  const offsetRockPoints = lowerByOffset(rockPoints, offsetX);
+
+  const map = new SandCave(offsetRockPoints, offsetX);
+
+  map.printMap();
 
   return 0;
 };
