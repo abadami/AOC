@@ -73,7 +73,7 @@ console.log(`--2022 day 12 solution--`);
 const day12Input = Deno.readTextFileSync("./day12/input.txt");
 console.log(`Part 1: ${day12Part1(day12Input)}`);
 //TODO: This takes awhile, maybe now is the time to improve the main.ts experience
-console.log(`Part 2: ${day12Part2(day12Input)}`);
+//console.log(`Part 2: ${day12Part2(day12Input)}`);
 
 console.log(`-- 2022 day 13 solution--`);
 const day13Input = Deno.readTextFileSync("./day13/input.txt");

@@ -1,1 +1,1 @@
-export type NumberArray = number | number[] | NumberArray[];
+export type RecursiveArray = number | Array<RecursiveArray | number>;
