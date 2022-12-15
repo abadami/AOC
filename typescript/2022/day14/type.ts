@@ -1,1 +1,1 @@
-export type point = [number, number];
+export type Point = [number, number];

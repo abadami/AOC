@@ -1,10 +1,14 @@
-export const parseInput = (input: string) =>
+import { Point } from "./type.ts";
+
+export const parseInput = (input: string): Point[][] =>
   input.split(/\r?\n/).map((line) => parseLine(line));
 
-export const parseLine = (line: string) =>
+export const parseLine = (line: string): Point[] =>
   line
     .split(" -> ")
-    .map((pair) => pair.split(",").map((number) => parseInt(number)));
+    .map((pair) =>
+      pair.split(",").map((number) => parseInt(number))
+    ) as Point[];
 
 export const lowestXAndY = (points: number[][][]) =>
   points.reduce(
@@ -27,17 +31,25 @@ export const lowestXAndY = (points: number[][][]) =>
     [Number.MAX_SAFE_INTEGER, Number.MAX_SAFE_INTEGER]
   );
 
-export const lowerByOffset = (points: number[][][], offsetX: number) =>
+export const lowerByOffset = (points: Point[][], offsetX: number): Point[][] =>
   points.map((rockLine) =>
     rockLine.map((point) => [point[0] - offsetX, point[1]])
   );
 
-export const findAllRockPoints = (points: number[][][]) => {
-  const allRockPoints: number[][][] = [];
+export const findAllRockPoints = (points: Point[][]) => {
+  const allRockPoints = new Set<Point>();
+  points.forEach((line) => {
+    for (let i = 0; i < line.length - 1; i++) {
+      const points = pointsBetweenTwo(line[i], line[i + 1]);
+      points.forEach((point) => allRockPoints.add(point));
+    }
+  });
+
+  return allRockPoints;
 };
 
-export const pointsBetweenTwo = (pointA: number[], pointB: number[]) => {
-  const points = [];
+export const pointsBetweenTwo = (pointA: Point, pointB: Point): Point[] => {
+  const points: Point[] = [];
 
   if (pointA[0] === pointB[0] && pointA[1] < pointB[1]) {
     for (let i = pointA[1]; i <= pointB[1]; i++) {
@@ -49,11 +61,11 @@ export const pointsBetweenTwo = (pointA: number[], pointB: number[]) => {
     }
   } else if (pointA[1] === pointB[1] && pointA[0] < pointB[0]) {
     for (let i = pointA[0]; i <= pointB[0]; i++) {
-      points.push([i, pointA[0]]);
+      points.push([i, pointA[1]]);
     }
   } else if (pointA[1] === pointB[1] && pointA[0] > pointB[0]) {
     for (let i = pointA[0]; i >= pointB[0]; i--) {
-      points.push([i, pointA[0]]);
+      points.push([i, pointA[1]]);
     }
   }
 
