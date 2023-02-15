@@ -1,11 +1,15 @@
 mod AOC_22;
-mod AOC_Utils;
 
-use AOC_Utils::AOCProblem;
-use AOC_22::Day1Problem;
+use AOC_22::*;
 
 fn main() {
-    let day_problem = Day1Problem {};
+    let day_problems: [fn(); 7] = [run_problem1, run_problem2, run_problem3, run_problem4, run_problem5, run_problem6, run_problem8];
 
-    day_problem.run_problem();
+    day_problems[0]();
+    day_problems[1]();
+    day_problems[2]();
+    day_problems[3]();
+    day_problems[4]();
+    day_problems[5]();
+    day_problems[6]();
 }
