@@ -1,5 +1,7 @@
 // This is how I did it and I'm sticking with it no matter how ugly it is
 
+use std::fs;
+
 fn parse_input(input: Vec<&str>) -> Vec<Vec<u32>> {
   let mut forest: Vec<Vec<u32>> = vec![];
   
@@ -163,7 +165,7 @@ fn find_scenic(forest: Vec<Vec<u32>>) -> usize {
   return highest_scenic_score;
 }
 
-pub fn part1(input: &String) -> usize {
+fn part1(input: &String) -> usize {
   let lines: Vec<&str> = input.lines().collect();
 
   let forest = parse_input(lines);
@@ -171,10 +173,20 @@ pub fn part1(input: &String) -> usize {
   return find_visible(forest);
 }
 
-pub fn part2(input: &String) -> usize {
+fn part2(input: &String) -> usize {
   let lines: Vec<&str> = input.lines().collect();
 
   let forest = parse_input(lines);
 
   return find_scenic(forest);
+}
+
+pub fn run_problem8() {
+  let input = fs::read_to_string("./src/AOC_22/day8/input.txt")
+  .expect("Should have been able to read the file for Day 8");
+
+  println!("Day 8 Results");
+  println!("---");
+  println!("Part 1: {0}", part1(&input));
+  println!("Part 2: {0}", part2(&input));
 }

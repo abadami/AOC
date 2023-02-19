@@ -5,14 +5,14 @@ const WIN_SCORE: i64 = 6;
 const DRAW_SCORE: i64 = 3;
 const LOSE_SCORE: i64 = 0;
 
-struct OpponentChoice {
-  A: usize,
-  B: usize,
-  C: usize
+pub struct OpponentChoice {
+  pub A: usize,
+  pub B: usize,
+  pub C: usize
 }
 
 impl OpponentChoice {
-  fn get(&self, option: &str) -> usize {
+  pub fn get(&self, option: &str) -> usize {
     if option == "A" {
       return self.A;
     } else if option == "B" {
@@ -25,7 +25,7 @@ impl OpponentChoice {
   }
 }
 
-fn handle_rock_scenario (choice: &str) -> i64 {
+pub fn handle_rock_scenario (choice: &str) -> i64 {
   let mut score_for_round = 0;
 
   if choice == "Y" {
@@ -39,7 +39,7 @@ fn handle_rock_scenario (choice: &str) -> i64 {
   return score_for_round;
 }
 
-fn handle_paper_scenario (choice: &str) -> i64 {
+pub fn handle_paper_scenario (choice: &str) -> i64 {
   let mut score_for_round = 0;
 
   if choice == "Y" {
@@ -53,7 +53,7 @@ fn handle_paper_scenario (choice: &str) -> i64 {
   return score_for_round;
 }
 
-fn handle_scissors_scenario (choice: &str) -> i64 {
+pub fn handle_scissors_scenario (choice: &str) -> i64 {
   let mut score_for_round = 0;
 
   if choice == "Y" {
@@ -67,7 +67,7 @@ fn handle_scissors_scenario (choice: &str) -> i64 {
   return score_for_round;
 }
 
-fn initialize_possible_scores () -> Vec<Vec<i64>> {
+pub fn initialize_possible_scores () -> Vec<Vec<i64>> {
   let mut possible_scores: Vec<Vec<i64>> = vec![vec![], vec![], vec![]];
 
   let possible_answers = ["Y", "X", "Z"];
@@ -83,52 +83,4 @@ fn initialize_possible_scores () -> Vec<Vec<i64>> {
   possible_scores[2].sort();
 
   return possible_scores;
-}
-
-pub fn part1(input: &String) -> i64 {
-  let scenarios: Vec<&str> = input.split("\r\n").collect();
-
-  let mut total_score = 0;
-
-  for scenario in scenarios {
-    let choices: Vec<&str> = scenario.split(" ").collect();
-
-    if choices[0] == "A" {
-      total_score += handle_rock_scenario(choices[1]);
-    } else if choices[0] == "B" {
-      total_score += handle_paper_scenario(choices[1]);
-    } else if choices[0] == "C" {
-      total_score += handle_scissors_scenario(choices[1]);
-    }
-  }
-
-  return total_score;
-}
-
-pub fn part2(input: &String) -> i64 {
-  let scenarios: Vec<&str> = input.split("\r\n").collect();
-
-  let mut total_score = 0;
-
-  let possible_scenario_results = initialize_possible_scores();
-
-  let possible_opponent_choice = OpponentChoice {
-    A: 0,
-    B: 1,
-    C: 2
-  };
-
-  for scenario in scenarios {
-    let choices: Vec<&str> = scenario.split(" ").collect();
-
-    if choices[1] == "X" {
-      total_score += possible_scenario_results[possible_opponent_choice.get(choices[0])][0];
-    } else if choices[1] == "Y" {
-      total_score += possible_scenario_results[possible_opponent_choice.get(choices[0])][1];
-    } else if choices[1] == "Z" {
-      total_score += possible_scenario_results[possible_opponent_choice.get(choices[0])][2];
-    }
-  }
-
-  return total_score;
 }

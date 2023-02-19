@@ -2,6 +2,8 @@
 /* Shoutouts to reddit user furman82, whose Kotlin solution gave me some inspiration for mine. (Mostly the tidbit of using index to determine stack placement)  */
 /* https://www.reddit.com/r/adventofcode/comments/zcxid5/comment/iyz4bro/?utm_source=share&utm_medium=web2x&context=3 */
 
+use std::fs;
+
 fn parse_input(input: &String) -> (Vec<Vec<char>>, Vec<[usize; 3]>) {
   let mut crates: Vec<Vec<char>> = vec![Vec::<char>::new(), Vec::<char>::new(), Vec::<char>::new(), Vec::<char>::new(), Vec::<char>::new(), Vec::<char>::new(), Vec::<char>::new(), Vec::<char>::new(), Vec::<char>::new()];
   let mut instructions: Vec<[usize; 3]> = Vec::new();
@@ -29,7 +31,7 @@ fn parse_input(input: &String) -> (Vec<Vec<char>>, Vec<[usize; 3]>) {
   return (crates, instructions)
 }
 
-pub fn part1(input: &String) -> String {
+fn part1(input: &String) -> String {
   let (mut crates, instructions) = parse_input(input);
 
   let mut result = String::from("");
@@ -54,7 +56,7 @@ pub fn part1(input: &String) -> String {
   return result;
 }
 
-pub fn part2(input: &String) -> String {
+fn part2(input: &String) -> String {
   let (mut crates, instructions) = parse_input(input);
 
   let mut result = String::from("");
@@ -83,4 +85,14 @@ pub fn part2(input: &String) -> String {
   }
 
   return result;
+}
+
+pub fn run_problem5() {
+  let input = fs::read_to_string("./src/AOC_22/day5/input.txt")
+  .expect("Should have been able to read the file for Day 5");
+
+  println!("Day 5 Results");
+  println!("---");
+  println!("Part 1: {0}", part1(&input));
+  println!("Part 2: {0}", part2(&input));
 }
