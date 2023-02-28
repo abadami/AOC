@@ -50,28 +50,53 @@ impl Graph {
   }
 
   fn initialize_tree(&mut self, input: &str) {
-    let mut current_node: NodeIndex = 0;
+    let mut current_node_index: NodeIndex = 0;
+    let mut previous_node_index: NodeIndex = 0;
 
     for command in input.lines().into_iter() {
       let modified_command = command.replace("$", "");
       let command_pieces: Vec<&str> = modified_command.trim_start().split(" ").collect();
   
-      if modified_command == "cd /" {
+      if command_pieces[0] == "cd" && command_pieces[1] == "/" {
+        self.new_node("/", 0, true);
         continue;
       }
 
       match command_pieces[0] {
         "dir" => {
-          todo!();
+          let new_index = self.new_node(command_pieces[1], 0, true);
+          self.new_edge(current_node_index, new_index);
         },
         "cd" => {
-          todo!();
+          match command_pieces[1] {
+            ".." => {
+              let new_previous_index = self
+              .edges
+              .iter()
+              .position(|edge| edge.target_node == previous_node_index)
+              .unwrap_or_default();
+
+              current_node_index = previous_node_index;
+              previous_node_index = new_previous_index;
+            },
+            val => {
+              let new_current_index = self
+              .nodes
+              .iter()
+              .position(|node| node.name == val)
+              .unwrap_or_default();
+
+              previous_node_index = current_node_index;
+              current_node_index = new_current_index;
+            }
+          };
         },
         "ls" => {
           continue
         },
         _ => {
-          todo!();
+          let new_index = self.new_node(command_pieces[1], command_pieces[0].parse().unwrap_or(-1), false);
+          self.new_edge(current_node_index, new_index);
         }
       }
 
@@ -82,9 +107,19 @@ impl Graph {
 
 
 fn part1(input: &str) -> i64 {
-  
+  let mut directory = Graph::new();
 
+  directory.initialize_tree(input);
 
+  for node in directory.nodes.iter() {
+    println!("Name: {0}, size: {1}, Is Directory? {2}", node.name, node.size, node.is_dir);
+  }
+
+  for edge in directory.edges.iter() {
+    let main_node = &directory.nodes[edge.main_node];
+    let target_node = &directory.nodes[edge.target_node];
+    println!("Main: {0}, Target: {1}", main_node.name, target_node.name);
+  }
 
   0
 }
