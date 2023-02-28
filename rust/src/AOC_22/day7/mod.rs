@@ -19,21 +19,67 @@ struct Graph {
 }
 
 impl Graph {
-  fn new_node(&mut self, name: &str, size: i32, is_dir: bool) {
+  fn new() -> Self {
+    Graph {
+      nodes: Vec::<Node>::new(),
+      edges: Vec::<Edge>::new()
+    }
+  }
+
+  fn new_node(&mut self, name: &str, size: i32, is_dir: bool) -> NodeIndex {
+    let index = self.nodes.len();
+    
     self.nodes.push(Node {
       name: String::from_str(name).unwrap_or_default(),
       size,
       is_dir
     });
+
+    index
   }
 
-  fn new_edge(&mut self, main: NodeIndex, target: NodeIndex) {
+  fn new_edge(&mut self, main: NodeIndex, target: NodeIndex) -> NodeIndex {
+    let index = self.edges.len();
+    
     self.edges.push(Edge {
       main_node: main,
       target_node: target
-    })
+    });
+
+    index
+  }
+
+  fn initialize_tree(&mut self, input: &str) {
+    let mut current_node: NodeIndex = 0;
+
+    for command in input.lines().into_iter() {
+      let modified_command = command.replace("$", "");
+      let command_pieces: Vec<&str> = modified_command.trim_start().split(" ").collect();
+  
+      if modified_command == "cd /" {
+        continue;
+      }
+
+      match command_pieces[0] {
+        "dir" => {
+          todo!();
+        },
+        "cd" => {
+          todo!();
+        },
+        "ls" => {
+          continue
+        },
+        _ => {
+          todo!();
+        }
+      }
+
+    }
   }
 }
+
+
 
 fn part1(input: &str) -> i64 {
   
