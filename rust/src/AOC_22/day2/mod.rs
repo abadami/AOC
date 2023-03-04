@@ -32,9 +32,9 @@ pub fn part2(input: &String) -> i64 {
   let possible_scenario_results = initialize_possible_scores();
 
   let possible_opponent_choice = OpponentChoice {
-    A: 0,
-    B: 1,
-    C: 2
+    a: 0,
+    b: 1,
+    c: 2
   };
 
   for scenario in scenarios {

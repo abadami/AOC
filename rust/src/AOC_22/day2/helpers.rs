@@ -6,19 +6,19 @@ const DRAW_SCORE: i64 = 3;
 const LOSE_SCORE: i64 = 0;
 
 pub struct OpponentChoice {
-  pub A: usize,
-  pub B: usize,
-  pub C: usize
+  pub a: usize,
+  pub b: usize,
+  pub c: usize
 }
 
 impl OpponentChoice {
   pub fn get(&self, option: &str) -> usize {
     if option == "A" {
-      return self.A;
+      return self.a;
     } else if option == "B" {
-      return self.B;
+      return self.b;
     } else if option == "C" {
-      return self.C;
+      return self.c;
     } else {
       return 0;
     }

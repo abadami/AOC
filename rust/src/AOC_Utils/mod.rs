@@ -1,7 +1,3 @@
-pub trait AOCProblem: Sized {
-  fn part1(&self, input: &str) -> String;
+mod graph;
 
-  fn part2(&self, input: &str) -> String;
-
-  fn run_problem(&self);
-}
+pub use graph::{Graph, NodeIndex};

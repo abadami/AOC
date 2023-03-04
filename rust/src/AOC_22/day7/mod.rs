@@ -1,54 +1,7 @@
 use std::{fs, str::FromStr};
-
-type NodeIndex = usize;
-
-struct Node {
-  name: String,
-  is_dir: bool,
-  size: i32
-}
-
-struct Edge {
-  main_node: NodeIndex,
-  target_node: NodeIndex
-}
-
-struct Graph {
-  nodes: Vec<Node>,
-  edges: Vec<Edge>
-}
+use super::super::AOC_Utils::{Graph, NodeIndex};
 
 impl Graph {
-  fn new() -> Self {
-    Graph {
-      nodes: Vec::<Node>::new(),
-      edges: Vec::<Edge>::new()
-    }
-  }
-
-  fn new_node(&mut self, name: &str, size: i32, is_dir: bool) -> NodeIndex {
-    let index = self.nodes.len();
-    
-    self.nodes.push(Node {
-      name: String::from_str(name).unwrap_or_default(),
-      size,
-      is_dir
-    });
-
-    index
-  }
-
-  fn new_edge(&mut self, main: NodeIndex, target: NodeIndex) -> NodeIndex {
-    let index = self.edges.len();
-    
-    self.edges.push(Edge {
-      main_node: main,
-      target_node: target
-    });
-
-    index
-  }
-
   fn initialize_tree(&mut self, input: &str) {
     let mut current_node_index: NodeIndex = 0;
     let mut previous_node_index: NodeIndex = 0;
