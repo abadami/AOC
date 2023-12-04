@@ -12,7 +12,7 @@ func DayOne2023() {
 
 	println("Day One")
 	println("Part 1: ", dayOnePartOne2023(input))
-	println("Part 2: ", dayTwoPartTwo2023(input))
+	println("Part 2: ", dayOnePartTwo2023(input))
 }
 
 func dayOnePartOne2023(input string) int {
@@ -27,7 +27,7 @@ func dayOnePartOne2023(input string) int {
 	return sum
 }
 
-func dayTwoPartTwo2023(input string) int {
+func dayOnePartTwo2023(input string) int {
 	lines := strings.Split(input, "\r\n")
 
 	sum := 0

@@ -1,6 +1,9 @@
 package _023
 
-import "testing"
+import (
+	"fmt"
+	"testing"
+)
 
 func TestExtractDigits(t *testing.T) {
 	var tests = []struct {
