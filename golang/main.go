@@ -8,4 +8,5 @@ import (
 func main() {
 	_022.DayOne2022()
 	_023.DayOne2023()
+	_023.DayTwo2023()
 }
