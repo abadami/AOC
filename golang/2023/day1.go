@@ -8,7 +8,7 @@ import (
 )
 
 func DayOne2023() {
-	input := utils.ReadInput("./2023/dayoneinput.txt")
+	input := utils.ReadInput("./2023/inputs/1.txt")
 
 	println("Day One")
 	println("Part 1: ", dayOnePartOne2023(input))
