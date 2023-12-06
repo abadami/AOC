@@ -18,7 +18,7 @@ func DayThree2023() {
 func dayThreePartOne2023(input string) int {
 	lines := strings.Split(input, "\r\n")
 
-	var validNumbers []int
+	var validNumbers = map[int]bool{}
 
 	numbers := map[string]struct {
 		start int
@@ -104,27 +104,22 @@ func dayThreePartOne2023(input string) int {
 		}
 	}
 
-	for number, position := range numbers {
-		for _, symbol := range symbols {
+	for _, symbol := range symbols {
+		for number, position := range numbers {
 			if symbol.x >= position.start-1 && symbol.x <= position.end+1 && symbol.y >= position.line-1 && symbol.y <= position.line+1 {
 				splitNumber := strings.Split(number, ".")
-				println(number)
 				val, err := strconv.Atoi(splitNumber[0])
-				println(val)
-
 				if err != nil {
 					return -1
 				}
-
-				validNumbers = append(validNumbers, val)
-				break
+				validNumbers[val] = true
 			}
 		}
 	}
 
 	sum := 0
 
-	for _, number := range validNumbers {
+	for number, _ := range validNumbers {
 		sum = sum + number
 	}
 
