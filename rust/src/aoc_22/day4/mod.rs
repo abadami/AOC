@@ -47,7 +47,7 @@ fn part2(input: &String) -> i64 {
 }
 
 pub fn run_problem4() {
-  let input = fs::read_to_string("./src/AOC_22/day4/input.txt")
+  let input = fs::read_to_string("../day4/input.txt")
   .expect("Should have been able to read the file for Day 4");
 
   println!("Day 4 Results");

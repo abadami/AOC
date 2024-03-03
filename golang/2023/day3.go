@@ -7,6 +7,8 @@ import (
 	"unicode"
 )
 
+//lol, commit test
+
 func DayThree2023() {
 	input := utils.ReadInput("./2023/inputs/3.txt")
 

@@ -1,5 +1,5 @@
 use std::{fs, str::FromStr};
-use super::super::AOC_Utils::{Graph, NodeIndex};
+use super::super::aoc_utils::{Graph, NodeIndex};
 
 impl Graph {
   fn initialize_tree(&mut self, input: &str) {
@@ -133,7 +133,7 @@ fn part2(input: &str) -> i32 {
 }
 
 pub fn run_problem7() {
-  let input = fs::read_to_string("./src/AOC_22/day7/input.txt")
+  let input = fs::read_to_string("../day7/input.txt")
   .expect("Should have been able to read the file for Day 7");
 
   println!("Day 7 Results");
