@@ -33,7 +33,7 @@ fn part2(input: &String) -> usize {
 }
 
 pub fn run_problem6() {
-  let input = fs::read_to_string("./src/AOC_22/day6/input.txt")
+  let input = fs::read_to_string("../day6/input.txt")
   .expect("Should have been able to read the file for Day 6");
 
   println!("Day 6 Results");

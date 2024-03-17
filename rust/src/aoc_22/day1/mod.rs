@@ -39,7 +39,7 @@ fn part2(input: &str) -> String {
 }
 
 pub fn run_problem1() {
-  let input = fs::read_to_string("./src/AOC_22/day1/input.txt")
+  let input = fs::read_to_string("../day1/input.txt")
   .expect("Should have been able to read the file for day 1");
 
   println!("Day 1 Results");
