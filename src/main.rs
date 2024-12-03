@@ -6,5 +6,5 @@ mod aoc_24;
 //use aoc_22::*;
 
 fn main() {
-    aoc_24::run_problem_1()
+    aoc_24::run_problem_2()
 }
